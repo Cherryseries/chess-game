@@ -14,10 +14,16 @@ public class Tile : MonoBehaviour
     [SerializeField] private int colNum;
 
     public void OnMouseDown()
-    {
-        GameManager.Instance.selectedPiece.GetComponent<ChessPlayerPlacementHandler>().row = rowNum;
-        GameManager.Instance.selectedPiece.GetComponent<ChessPlayerPlacementHandler>().column = colNum;
-        ChessBoardPlacementHandler.Instance.ClearHighlights();
-        Debug.Log("tile :"+rowNum+colNum);
+    {      
+        if(gameObject.transform.childCount > 0) 
+        {
+            GameManager.Instance.selectedPiece.GetComponent<ChessPlayerPlacementHandler>().row = rowNum;
+            GameManager.Instance.selectedPiece.GetComponent<ChessPlayerPlacementHandler>().column = colNum;
+            ChessBoardPlacementHandler.Instance.ClearHighlights();
+           // King.Instance.isSelected = false;
+           // Pawn.instance.SelectedPawn = false;
+           // Knight.Instance.isClicked = false;
+           // Debug.Log("tile :" + rowNum + colNum);
+        }
     }
 }

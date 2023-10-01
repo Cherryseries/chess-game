@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class Pawn : ChessPlayerPlacementHandler
 {
-
+    int row1, col1;
     public static Pawn instance;
-    private bool isSelected = false;
+    public bool SelectedPawn = true;
     private void Awake()
     {
         instance = this;
@@ -14,28 +14,37 @@ public class Pawn : ChessPlayerPlacementHandler
 
     private void Update()
     {
-        if (!isSelected)
-        {
-            gameObject.transform.position = ChessBoardPlacementHandler.Instance.GetTile(row, column).transform.position;
-        }
+        row = gameObject.GetComponent<ChessPlayerPlacementHandler>().row;
+        column = gameObject.GetComponent<ChessPlayerPlacementHandler>().column;
+
+        gameObject.transform.position = ChessBoardPlacementHandler.Instance.GetTile(row, column).transform.position;
     }
     private void OnMouseDown()
-    { 
-        ChessBoardPlacementHandler.Instance.ClearHighlights();
-        if(!isSelected) 
-        {
-            ChessBoardPlacementHandler.Instance.Highlight(++row, column);
-            isSelected = true;
-        }
-    }
-
-    public void MovePawn() 
     {
-        this.gameObject.transform.position = ChessBoardPlacementHandler.Instance.GetTile(row, column).transform.position;
-        Debug.Log(row + "," + column);
+        GameManager.Instance.selectedPiece = this.gameObject;
         ChessBoardPlacementHandler.Instance.ClearHighlights();
-        Debug.Log("Pawn moved");
-        isSelected = false;
-    }
 
+        if (gameObject.CompareTag("Black")) 
+        {
+            row1 = row;
+            col1 = column;
+            ++row1;
+            Obstracles.instance.Obstraclepos(row1,col1);
+            if(Obstracles.instance.isPossible == true) 
+            {
+                ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
+                SelectedPawn = true;
+            }
+
+        }
+
+        if (gameObject.CompareTag("White"))
+        {
+            row1 = row;
+            col1 = column;
+            ChessBoardPlacementHandler.Instance.Highlight(--row1, col1);
+            SelectedPawn = true;
+        }
+       
+    }
 }

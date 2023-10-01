@@ -20,21 +20,23 @@ public class Rook : ChessPlayerPlacementHandler
 
     private void Update()
     {
-        row = GameManager.Instance.selectedPiece.GetComponent<ChessPlayerPlacementHandler>().row;
-        column = GameManager.Instance.selectedPiece.GetComponent<ChessPlayerPlacementHandler>().column;
+        row = gameObject.GetComponent<ChessPlayerPlacementHandler>().row;
+        column = gameObject.GetComponent<ChessPlayerPlacementHandler>().column;
         transform.position = ChessBoardPlacementHandler.Instance.GetTile(row, column).transform.position;
     }
     private void UpRowPoss()
     {
         try
         {
-             row1 = row;
-             col1 = column;
+            row1 = row;
+            col1 = column;
             if (row1 <= 7 && row1 >= 0)
             {
                 for (int i = row1; i <= 7; i++)
                 {
-                    ChessBoardPlacementHandler.Instance.Highlight(++row1, col1);
+                    ++row1;
+                    ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
+
                 }
             }
         }
@@ -53,9 +55,10 @@ public class Rook : ChessPlayerPlacementHandler
              col1 = column;
             if (row1 <= 7 && row1 >= 0)
             {
-                for (int i = row1; i <= 7; i++)
+                for (int i = 0; i <= 7; i++)
                 {
                     ChessBoardPlacementHandler.Instance.Highlight(--row1, col1);
+                   // Debug.Log(row1+","+col1);
                 }
             }
         }
@@ -97,7 +100,7 @@ public class Rook : ChessPlayerPlacementHandler
                 for (int j = 1; j <= 7; j++)
                 {
                     ChessBoardPlacementHandler.Instance.Highlight(row1, --col1);
-                    Debug.Log("Rook left possiblilities :"+row1+","+col1);
+                   // Debug.Log("Rook left possiblilities :"+row1+","+col1);
                 }
             }
         }

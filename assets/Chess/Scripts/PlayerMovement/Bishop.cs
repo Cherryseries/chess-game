@@ -10,8 +10,8 @@ public class Bishop : ChessPlayerPlacementHandler
 
     private void Update()
     {
-        row = GameManager.Instance.selectedPiece.GetComponent<ChessPlayerPlacementHandler>().row;
-        column = GameManager.Instance.selectedPiece.GetComponent<ChessPlayerPlacementHandler>().column;
+        row = gameObject.GetComponent<ChessPlayerPlacementHandler>().row;
+        column = gameObject.GetComponent<ChessPlayerPlacementHandler>().column;
         transform.position = ChessBoardPlacementHandler.Instance.GetTile(row, column).transform.position;
     }
     private  void  OnMouseDown()

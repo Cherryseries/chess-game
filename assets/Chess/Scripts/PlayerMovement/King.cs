@@ -6,18 +6,27 @@ using UnityEngine;
 
 public class King : ChessPlayerPlacementHandler
 {
-    private bool isSelected = false;
+   // public bool isSelected = false;
+
+    public static King Instance;
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     int row1, col1;
     private void Update()
     {
+        row = gameObject.GetComponent<ChessPlayerPlacementHandler>().row;
+        column = gameObject.GetComponent<ChessPlayerPlacementHandler>().column;
 
         gameObject.transform.position = ChessBoardPlacementHandler.Instance.GetTile(row, column).transform.position;
     }
     private void OnMouseDown()
     {
-        if (!isSelected)
-        {
+ 
+       // if (!isSelected)
+        
             ChessBoardPlacementHandler.Instance.ClearHighlights();
             GameManager.Instance.selectedPiece = this.gameObject;
             UpRowPoss();
@@ -28,8 +37,8 @@ public class King : ChessPlayerPlacementHandler
             LeftDiagonals();
             RightDownDiagonals();
             LeftDownDiagonals();
-            isSelected = true;
-        }
+          //  isSelected = true;
+        
     }
 
     private void UpRowPoss()
@@ -150,14 +159,4 @@ public class King : ChessPlayerPlacementHandler
             Debug.Log(" may be out of bound or this error" + e.Message);
         }
     }
-
-    public void MoveKing()
-    {
-     //   this.gameObject.transform.position = ChessBoardPlacementHandler.Instance.GetTile(row, column).transform.position;
-        Debug.Log(row + "," + column);
-        ChessBoardPlacementHandler.Instance.ClearHighlights();
-        Debug.Log("Pawn moved");
-        isSelected = false;
-    }
-
 }

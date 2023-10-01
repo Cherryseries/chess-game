@@ -25,8 +25,8 @@ private void OnMouseDown()
 
     private void Update()
     {
-        row = GameManager.Instance.selectedPiece.GetComponent<ChessPlayerPlacementHandler>().row ;
-        column= GameManager.Instance.selectedPiece.GetComponent<ChessPlayerPlacementHandler>().column;
+        row = gameObject.GetComponent<ChessPlayerPlacementHandler>().row ;
+        column= gameObject.GetComponent<ChessPlayerPlacementHandler>().column;
         row1 = row ;
         col1 = column;
         transform.position = ChessBoardPlacementHandler.Instance.GetTile(row, column).transform.position;
@@ -62,7 +62,7 @@ private void OnMouseDown()
             col1 = column;
             if (row1 <= 7 && row1 >= 0)
             {
-                for (int i = row1; i <= 7; i++)
+                for (int i = 0; i <= 7; i++)
                 {
                     ChessBoardPlacementHandler.Instance.Highlight(--row1, col1);
                     Debug.Log(row1+column);

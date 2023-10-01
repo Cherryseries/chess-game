@@ -43,7 +43,16 @@ private void OnMouseDown()
             {
                 for (int i = row1; i <= 7; i++)
                 {
-                    ChessBoardPlacementHandler.Instance.Highlight(++row1, col1);
+                    ++row1;
+                    Obstracles.instance.Obstraclepos(row1, col1);
+                    if (Obstracles.instance.isPossible == true)
+                    {
+                        ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
         }
@@ -64,8 +73,17 @@ private void OnMouseDown()
             {
                 for (int i = 0; i <= 7; i++)
                 {
-                    ChessBoardPlacementHandler.Instance.Highlight(--row1, col1);
-                    Debug.Log(row1+column);
+                    --row1;
+                    Obstracles.instance.Obstraclepos(row1, col1);
+                    if (Obstracles.instance.isPossible == true)
+                    {
+                        ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    // Debug.Log(row1+","+col1);
                 }
             }
         }
@@ -85,7 +103,16 @@ private void OnMouseDown()
             {
                 for (int j = col1; j <= 7; j++)
                 {
-                    ChessBoardPlacementHandler.Instance.Highlight(row1, ++col1);
+                    ++col1;
+                    Obstracles.instance.Obstraclepos(row1, col1);
+                    if (Obstracles.instance.isPossible == true)
+                    {
+                        ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
         }
@@ -106,8 +133,17 @@ private void OnMouseDown()
             {
                 for (int j = 1; j <= 7; j++)
                 {
-                    ChessBoardPlacementHandler.Instance.Highlight(row1, --col1);
-                    Debug.Log("Rook left possiblilities :" + row1 + "," + col1);
+                    --col1;
+                    Obstracles.instance.Obstraclepos(row1, col1);
+                    if (Obstracles.instance.isPossible == true)
+                    {
+                        ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    // Debug.Log("Rook left possiblilities :"+row1+","+col1);
                 }
             }
         }
@@ -117,6 +153,7 @@ private void OnMouseDown()
             Debug.Log(" may be out of bound or this error" + e.Message);
         }
     }
+
     private void RightDiagonals()
     {
         try
@@ -130,8 +167,16 @@ private void OnMouseDown()
                 {
                     ++row1;
                     ++col1;
-                    ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
-                    Debug.Log("possible positions" + row1 + " " + col1);
+                    Obstracles.instance.Obstraclepos(row1, col1);
+                    if (Obstracles.instance.isPossible == true)
+                    {
+                        ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    //Debug.Log("possible positions"+row1 + " " + col1);
                 }
             }
         }
@@ -155,8 +200,16 @@ private void OnMouseDown()
                 {
                     --row1;
                     ++col1;
-                    ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
-                    Debug.Log("possible positions" + row1 + " " + col1);
+                    Obstracles.instance.Obstraclepos(row1, col1);
+                    if (Obstracles.instance.isPossible == true)
+                    {
+                        ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    //  Debug.Log("possible positions" + row1 + " " + col1);
                 }
             }
         }
@@ -179,7 +232,15 @@ private void OnMouseDown()
                 {
                     ++row1;
                     --col1;
-                    ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
+                    Obstracles.instance.Obstraclepos(row1, col1);
+                    if (Obstracles.instance.isPossible == true)
+                    {
+                        ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
+                    }
+                    else
+                    {
+                        break;
+                    }
                     //  Obstracles.instance.Obstraclepos(row1, col1);
                 }
             }
@@ -202,7 +263,15 @@ private void OnMouseDown()
                 {
                     --row1;
                     --col1;
-                    ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
+                    Obstracles.instance.Obstraclepos(row1, col1);
+                    if (Obstracles.instance.isPossible == true)
+                    {
+                        ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
+                    }
+                    else
+                    {
+                        break;
+                    }
                     //  Obstracles.instance.Obstraclepos(row1, col1);
                 }
             }
@@ -212,5 +281,4 @@ private void OnMouseDown()
             Debug.Log(" may be out of bound or this error" + e.Message);
         }
     }
-
 }

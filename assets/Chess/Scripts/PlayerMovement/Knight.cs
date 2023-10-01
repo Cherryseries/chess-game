@@ -47,10 +47,20 @@ public class Knight : ChessPlayerPlacementHandler
                     {
                         ChessBoardPlacementHandler.Instance.Highlight(++row1, col1);
                     }
-                    ChessBoardPlacementHandler.Instance.Highlight(row1, --col1);
-                    // second chance
-                    // After for loop
-                    ChessBoardPlacementHandler.Instance.Highlight(row1, 2 + col1);
+                    --col1;
+                    Obstracles.instance.Obstraclepos(row1, col1);
+                    if (Obstracles.instance.isPossible == true)
+                    {
+                    ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
+                    }
+                // second chance
+                // After for loop
+                    col1+=2;
+                    Obstracles.instance.Obstraclepos(row1, col1);
+                    if (Obstracles.instance.isPossible == true)
+                    {
+                    ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
+                    }
                    // isClicked = true;
                 }
             }

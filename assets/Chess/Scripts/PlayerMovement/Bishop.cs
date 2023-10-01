@@ -37,8 +37,16 @@ public class Bishop : ChessPlayerPlacementHandler
                     {
                     ++row1;
                     ++col1;
-                    ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
-                    Debug.Log("possible positions"+row1 + " " + col1);
+                    Obstracles.instance.Obstraclepos(row1, col1);
+                    if (Obstracles.instance.isPossible == true)
+                    {
+                        ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    //Debug.Log("possible positions"+row1 + " " + col1);
                     }
                 } 
         }
@@ -62,8 +70,16 @@ public class Bishop : ChessPlayerPlacementHandler
                 {
                     --row1;
                     ++col1;
-                    ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
-                    Debug.Log("possible positions" + row1 + " " + col1);
+                    Obstracles.instance.Obstraclepos(row1, col1);
+                    if (Obstracles.instance.isPossible == true)
+                    {
+                        ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                  //  Debug.Log("possible positions" + row1 + " " + col1);
                 }
             }
         }
@@ -86,7 +102,15 @@ public class Bishop : ChessPlayerPlacementHandler
                 {
                     ++row1;
                     --col1;
-                    ChessBoardPlacementHandler.Instance.Highlight(row1,col1);
+                    Obstracles.instance.Obstraclepos(row1, col1);
+                    if (Obstracles.instance.isPossible == true)
+                    {
+                        ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
+                    }
+                    else
+                    {
+                        break;
+                    }
                   //  Obstracles.instance.Obstraclepos(row1, col1);
                 }
             }
@@ -109,7 +133,15 @@ public class Bishop : ChessPlayerPlacementHandler
                 {
                     --row1;
                     --col1;
-                    ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
+                    Obstracles.instance.Obstraclepos(row1, col1);
+                    if (Obstracles.instance.isPossible == true)
+                    {
+                        ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
+                    }
+                    else
+                    {
+                        break;
+                    }
                     //  Obstracles.instance.Obstraclepos(row1, col1);
                 }
             }
@@ -118,12 +150,5 @@ public class Bishop : ChessPlayerPlacementHandler
         {
             Debug.Log(" may be out of bound or this error" + e.Message);
         }
-    }
-
-
-
-    public void moveBishop()
-    {
-        this.gameObject.transform.position = ChessBoardPlacementHandler.Instance.GetTile(row1, col1).transform.position;
     }
 }

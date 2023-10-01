@@ -35,8 +35,15 @@ public class Rook : ChessPlayerPlacementHandler
                 for (int i = row1; i <= 7; i++)
                 {
                     ++row1;
-                    ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
-
+                    Obstracles.instance.Obstraclepos(row1, col1);
+                    if(Obstracles.instance.isPossible == true) 
+                    {
+                        ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
+                    }
+                    else 
+                    {
+                        break;
+                    }
                 }
             }
         }
@@ -57,8 +64,17 @@ public class Rook : ChessPlayerPlacementHandler
             {
                 for (int i = 0; i <= 7; i++)
                 {
-                    ChessBoardPlacementHandler.Instance.Highlight(--row1, col1);
-                   // Debug.Log(row1+","+col1);
+                    --row1;
+                    Obstracles.instance.Obstraclepos(row1, col1);
+                    if (Obstracles.instance.isPossible == true)
+                    {
+                        ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    // Debug.Log(row1+","+col1);
                 }
             }
         }
@@ -72,13 +88,22 @@ public class Rook : ChessPlayerPlacementHandler
     {
         try
         {
-             row1 = row;
-             col1 = column;
+            row1 = row;
+            col1 = column;
             if (col1 <= 7 && col1 >= 0)
             {
                 for (int j = col1; j <= 7; j++)
                 {
-                    ChessBoardPlacementHandler.Instance.Highlight(row1, ++col1);
+                    ++col1;
+                    Obstracles.instance.Obstraclepos(row1, col1);
+                    if (Obstracles.instance.isPossible == true)
+                    {
+                        ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
         }
@@ -99,8 +124,17 @@ public class Rook : ChessPlayerPlacementHandler
             {
                 for (int j = 1; j <= 7; j++)
                 {
-                    ChessBoardPlacementHandler.Instance.Highlight(row1, --col1);
-                   // Debug.Log("Rook left possiblilities :"+row1+","+col1);
+                    --col1;
+                    Obstracles.instance.Obstraclepos(row1, col1);
+                    if (Obstracles.instance.isPossible == true)
+                    {
+                        ChessBoardPlacementHandler.Instance.Highlight(row1, col1);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    // Debug.Log("Rook left possiblilities :"+row1+","+col1);
                 }
             }
         }
